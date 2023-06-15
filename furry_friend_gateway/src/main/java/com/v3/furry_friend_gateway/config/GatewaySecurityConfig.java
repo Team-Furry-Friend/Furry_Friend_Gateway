@@ -35,11 +35,9 @@ public class GatewaySecurityConfig {
             .logout().disable()
             .authorizeExchange()
             .pathMatchers("/**").permitAll()
-            .anyExchange().authenticated()
             .and()
             .build();
     }
-
 
     // CORS(Cross-Origin Resource Sharing) 설정을 위한 CorsConfigurationSource를 생성합니다.
     @Bean
@@ -69,29 +67,29 @@ public class GatewaySecurityConfig {
             // Member 서비스로의 요청을 member-service로 라우팅합니다.
             .route("member-service", r -> r.path("/member/**")
                 .filters(f -> f.rewritePath("/member/(?<path>.*)", "/member/${path}"))
-                .uri("http://localhost:8081"))
+                .uri("http://howstheairtoday.site:8081"))
             // OAuth2 로그인 관련 요청을 oauth2-login-service로 라우팅합니다.
             .route("oauth2-login-service", r -> r
                 .path("/oauth2/**")
                 .filters(f -> f.rewritePath("/oauth2/(?<path>.*)", "/oauth2/${path}"))
-                .uri("http://localhost:8081"))
+                .uri("http://howstheairtoday.site:8081"))
             // 카카오 로그인을 위한 라우팅 설정
             .route("kakao-login", r -> r
                 .path("/login/oauth2/code/kakao/**") // 수정된 경로 설정
                 .filters(f -> f.rewritePath("/login/oauth2/code/kakao/(?<path>.*)", "/oauth2/code/kakao/${path}")) // 수정된 리라이팅 설정
-                .uri("http://localhost:8081"))
+                .uri("http://howstheairtoday.site:8081"))
             // product-service로의 요청을 라우팅합니다.
             .route("product-service", r -> r.path("/product/**")
                 .filters(f -> f.filter(jwtAuthenticationFilter()).rewritePath("/product/(?<path>.*)", "/product/${path}"))
-                .uri("lb://localhost:8080/"))
+                .uri("http://howstheairtoday.site:8080/"))
             // reviews-service로의 요청을 라우팅합니다.
             .route("reviews-service", r -> r.path("/reviews/**")
                 .filters(f -> f.filter(jwtAuthenticationFilter()).rewritePath("/reviews/(?<path>.*)", "/reviews/${path}"))
-                .uri("lb://localhost:8080/"))
+                .uri("http://howstheairtoday.site:8080/"))
             // basket-service로의 요청을 라우팅합니다.
             .route("basket-service", r -> r.path("/basket/**")
                 .filters(f -> f.filter(jwtAuthenticationFilter()).rewritePath("/basket/(?<path>.*)", "/basket/${path}"))
-                .uri("lb://localhost:8080/"))
+                .uri("http://howstheairtoday.site:8080/"))
             .build();
     }
 }
