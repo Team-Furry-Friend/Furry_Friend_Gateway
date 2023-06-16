@@ -11,8 +11,6 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.anyString;
-import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 public class ControllerTest {
@@ -25,6 +23,7 @@ public class ControllerTest {
 
     @Test
     public void testIsValid_WithValidToken_ReturnsSuccessResponse() {
+
 
         // given
         String validToken = "eyJhbGciOiJIUzI1NiJ9.eyJtZW1iZXJJZCI6MSwiaWF0IjoxNjg2NzI1Mzg1LCJleHAiOjE2ODY3MjcxODV9.ru7HaBY1juftQM3WDMh3E44gYRPumXbUpmxiHnGDjG4";
@@ -42,7 +41,6 @@ public class ControllerTest {
 
         // given
         String invalidToken = "invalidAccessToken";
-        when(jwtService.validateToken(invalidToken)).thenThrow(NullPointerException.class);
 
         // when
         ApiResponse<JwtResponse> response = gatewayContoller.isValid(invalidToken);

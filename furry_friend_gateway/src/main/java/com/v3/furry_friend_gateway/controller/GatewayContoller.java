@@ -20,8 +20,8 @@ public class GatewayContoller {
 
     private final JwtService jwtService;
 
-    @GetMapping("/isvalid/{accessToken}")
-    public ApiResponse<JwtResponse> isValid(@PathVariable String accessToken) {
+    @GetMapping("/isvalid/{access_token}")
+    public ApiResponse<JwtResponse> isValid(@PathVariable("access_token") String accessToken) {
         log.info("accessToken 확인: " + accessToken);
 
         // 유효성 검사
