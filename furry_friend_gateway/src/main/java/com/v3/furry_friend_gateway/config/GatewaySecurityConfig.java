@@ -80,15 +80,15 @@ public class GatewaySecurityConfig {
                 .uri("http://howstheairtoday.site:8081"))
             // product-service로의 요청을 라우팅합니다.
             .route("product-service", r -> r.path("/products/**")
-                .filters(f -> f.filter(jwtAuthenticationFilter()).rewritePath("/products/(?<path>.*)", "/products/${path}"))
+                .filters(f -> f.rewritePath("/products/(?<path>.*)", "/products/${path}"))
                 .uri("http://howstheairtoday.site:8080/"))
             // reviews-service로의 요청을 라우팅합니다.
             .route("reviews-service", r -> r.path("/reviews/**")
-                .filters(f -> f.filter(jwtAuthenticationFilter()).rewritePath("/reviews/(?<path>.*)", "/reviews/${path}"))
+                .filters(f -> f.rewritePath("/reviews/(?<path>.*)", "/reviews/${path}"))
                 .uri("http://howstheairtoday.site:8080/"))
             // basket-service로의 요청을 라우팅합니다.
             .route("basket-service", r -> r.path("/baskets/**")
-                .filters(f -> f.filter(jwtAuthenticationFilter()).rewritePath("/baskets/(?<path>.*)", "/baskets/${path}"))
+                .filters(f -> f.rewritePath("/baskets/(?<path>.*)", "/baskets/${path}"))
                 .uri("http://howstheairtoday.site:8080/"))
             .build();
     }
