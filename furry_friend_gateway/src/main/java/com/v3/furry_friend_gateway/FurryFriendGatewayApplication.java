@@ -9,5 +9,4 @@ public class FurryFriendGatewayApplication {
     public static void main(String[] args) {
         SpringApplication.run(FurryFriendGatewayApplication.class, args);
     }
-
 }
