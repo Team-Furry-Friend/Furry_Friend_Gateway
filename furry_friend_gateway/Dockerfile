@@ -1,5 +1,5 @@
 # OpenJDK 11 Alpine image
-FROM openjdk:11-alpine
+FROM openjdk:11
 
 # 컨테이너 내부의 /app 디렉토리 생성
 WORKDIR /app
