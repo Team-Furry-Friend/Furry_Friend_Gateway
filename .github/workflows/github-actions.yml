@@ -33,10 +33,16 @@ jobs:
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
           restore-keys: |
             ${{ runner.os }}-gradle-
+      
+      # 실행 권한 부여
+      - name: Grant execute permission to gradlew
+        run: chmod +x furry_friend_gateway/gradlew
 
       # gradle build
       - name: Build with Gradle
-        run: cd furry_friend_gateway && ./gradlew build -x test
+        run: |
+          cd furry_friend_gateway
+          ./gradlew build -x test
 
       # docker build & push to production
       - name: Docker build & push to prod
