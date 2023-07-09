@@ -1,7 +1,7 @@
 package com.v3.furry_friend_gateway.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -20,8 +20,8 @@ public class GatewayContoller {
 
     private final JwtService jwtService;
 
-    @GetMapping("/isvalid/{access_token}")
-    public ApiResponse<JwtResponse> isValid(@PathVariable("access_token") String accessToken) {
+    @GetMapping("/isvalid")
+    public ApiResponse<JwtResponse> isValid(@RequestHeader(value = "Authorization") String accessToken) {
         log.info("accessToken 확인: " + accessToken);
 
         // 유효성 검사
