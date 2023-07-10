@@ -22,7 +22,6 @@ public class GatewayContoller {
 
     @GetMapping("/isvalid")
     public ApiResponse<JwtResponse> isValid(@RequestHeader(value = "Authorization") String accessToken) {
-        log.info("accessToken 확인: " + accessToken);
 
         // 유효성 검사
         try{

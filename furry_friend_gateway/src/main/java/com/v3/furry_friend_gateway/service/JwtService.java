@@ -36,15 +36,20 @@ public class JwtService {
                 Claims claims = result.get();
                 memberId = claims.get("memberId", Long.class);
                 name = claims.get("name", String.class);
+            }else{
+                throw new Exception("토큰 검증 실패");
             }
 
             return JwtResponse.builder()
                 .memberId(memberId)
-                .memberName(name).build();
+                .memberName(name)
+                .build();
         } catch (SignatureException e) {
             // 토큰이 유효하지 않으면 false를 반환
             log.error("SignatureException: " + e);
             return null;
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
     }
 
