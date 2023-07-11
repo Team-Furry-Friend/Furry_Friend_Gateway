@@ -25,19 +25,14 @@ public class GatewayContoller {
 
         // 유효성 검사
         try{
-
             // 토큰 검사 성공
             JwtResponse jwtResponse = jwtService.validateToken(accessToken);
             return ApiResponse.success("토큰 검증 완료", jwtResponse);
-        }catch (NullPointerException e) {
-
-            // 토큰 검사 실패
-            return ApiResponse.fail(401, "토큰 검증에 실패했습니다.");
         }catch (Exception e){
 
             // 토큰 타임 아웃
             log.error("토큰 오류 발생: " + e.getMessage());
-            return ApiResponse.fail(500, "토큰 오류가 발생했습니다.");
+            return ApiResponse.fail(401, "토큰 오류가 발생했습니다.");
         }
     }
 }

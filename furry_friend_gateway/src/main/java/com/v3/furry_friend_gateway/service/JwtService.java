@@ -47,8 +47,9 @@ public class JwtService {
         } catch (SignatureException e) {
             // 토큰이 유효하지 않으면 false를 반환
             log.error("SignatureException: " + e);
-            return null;
+            throw new RuntimeException(e);
         } catch (Exception e) {
+            log.error("Exception: " + e);
             throw new RuntimeException(e);
         }
     }
