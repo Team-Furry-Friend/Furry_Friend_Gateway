@@ -50,5 +50,5 @@ jobs:
         run: |
           docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
           cd furry_friend_gateway
-          docker build -f Dockerfile -t ${{ secrets.DOCKER_USERNAME }}/furry-friend-gateway .
+          docker build -f furry_friend_gateway/Dockerfile -t ${{ secrets.DOCKER_USERNAME }}/furry-friend-gateway .
           docker push ${{ secrets.DOCKER_USERNAME }}/furry-friend-gateway
