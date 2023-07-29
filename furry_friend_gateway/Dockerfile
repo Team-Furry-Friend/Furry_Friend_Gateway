@@ -10,7 +10,7 @@ ARG CONTAINER_JAR_FILE=furry_friend_gateway.jar
 COPY ${JAR_FILE} /app/${CONTAINER_JAR_FILE}
 
 # application.yml 파일을 컨테이너 내부의 /app 디렉토리에 복사
-COPY /main/resources/Furry-Friend-Security/furry_friend_gateway/application.yml /app/application.yml
+COPY src/main/resources/Furry-Friend-Security/furry_friend_gateway/application.yml /app/application.yml
 
 # Spring Boot를 실행하기 위한 entry point 지정
 ENTRYPOINT ["java", "-jar", "/app/furry_friend_gateway.jar"]
